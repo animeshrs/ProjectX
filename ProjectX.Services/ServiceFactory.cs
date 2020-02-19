@@ -1,4 +1,5 @@
-﻿using ProjectX.Services.ShardServices;
+﻿using ProjectX.Persistence;
+using ProjectX.Services.ShardServices;
 using System.ComponentModel.Design;
 
 namespace ProjectX.Services
@@ -9,10 +10,14 @@ namespace ProjectX.Services
     public class ServiceFactory : IServiceFactory
     {
         private readonly ServiceContainer _serviceContainer;
+        private ShardDbContext _shardDbContext;
+
         public ServiceFactory(ServiceContainer serviceContainer)
         {
             _serviceContainer = serviceContainer;
         }
+
+        public ShardDbContext Context => _shardDbContext ?? (_shardDbContext = new ShardDbContext());
 
         public CategoryService GetCategoryService()
         {

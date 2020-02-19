@@ -15,11 +15,13 @@ namespace ProjectX.Controllers
 
         private readonly CategoryService _categoryService;
         private readonly IProjectXConfigurationManager _shardConfigurationManager;
+        private readonly ShardDbContext _context;
 
         public TestMeController(ServiceFactory serviceFactory, IProjectXConfigurationManager configurationManager)
         {
             _categoryService = serviceFactory.GetCategoryService();
             _shardConfigurationManager = configurationManager;
+            _context = serviceFactory.Context;
         }
 
         // GET: TestMe
@@ -28,6 +30,8 @@ namespace ProjectX.Controllers
             var sum = _categoryService.Sum(1, 2);
             var conString = _shardConfigurationManager.GetShardDbConnectionString();
             var masString = _shardConfigurationManager.GetMasterDbConnectionString();
+            var categories = await _context.Categories.ToListAsync();
+            var testMes = await _context.TestMes.ToListAsync();
 
             var result = await db.TestMes.ToListAsync();
             return View(result);
