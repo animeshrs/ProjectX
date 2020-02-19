@@ -4,7 +4,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using ProjectX.Services;
-using ProjectX.Services.Services;
+using ProjectX.Services.ShardServices;
 
 namespace ProjectX.Controllers
 {

@@ -1,4 +1,4 @@
-﻿using ProjectX.Services.Services;
+﻿using ProjectX.Services.ShardServices;
 
 namespace ProjectX.Services
 {

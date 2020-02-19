@@ -111,7 +111,7 @@
     <Compile Include="IServiceFactory.cs" />
     <Compile Include="ServiceFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="ShardServices\CategoryService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

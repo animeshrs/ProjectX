@@ -1,4 +1,4 @@
-﻿namespace ProjectX.Services.Services
+﻿namespace ProjectX.Services.ShardServices
 {
     public class CategoryService
     {
