@@ -3,6 +3,7 @@ using Ninject;
 using Ninject.Web.Common;
 using Ninject.Web.Common.WebHost;
 using ProjectX;
+using ProjectX.Configuration;
 using System;
 using System.Web;
 
@@ -62,6 +63,7 @@ namespace ProjectX
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Load<WebModule>();
+            kernel.Load<ProjectXConfigurationModule>();
         }
     }
 }
