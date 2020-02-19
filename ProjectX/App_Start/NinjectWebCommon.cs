@@ -62,7 +62,6 @@ namespace ProjectX
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Load<WebModule>();
-            //kernel.Load<ShardConfigurationModule>();
         }
     }
 }

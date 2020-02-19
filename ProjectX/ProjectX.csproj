@@ -348,6 +348,10 @@
       <Project>{71915b15-fa1c-4a4a-87b9-159eb6634065}</Project>
       <Name>ProjectX.Persistence</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProjectX.Services\ProjectX.Services.csproj">
+      <Project>{0cb6e21b-ceaf-4158-aa28-9707b04d9698}</Project>
+      <Name>ProjectX.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

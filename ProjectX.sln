@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectX.Master", "ProjectX
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConsoleApps", "ConsoleApps", "{5AD63387-5EE9-4214-89B2-69B36311F378}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectX.Services", "ProjectX.Services\ProjectX.Services.csproj", "{0CB6E21B-CEAF-4158-AA28-9707B04D9698}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{77C2B375-06F1-4410-AFBE-BE23AF8C45B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77C2B375-06F1-4410-AFBE-BE23AF8C45B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77C2B375-06F1-4410-AFBE-BE23AF8C45B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CB6E21B-CEAF-4158-AA28-9707B04D9698}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CB6E21B-CEAF-4158-AA28-9707B04D9698}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CB6E21B-CEAF-4158-AA28-9707B04D9698}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CB6E21B-CEAF-4158-AA28-9707B04D9698}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

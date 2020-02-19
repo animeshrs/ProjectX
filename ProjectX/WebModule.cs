@@ -1,5 +1,6 @@
 ﻿using Ninject.Modules;
 using Ninject.Web.Common;
+using ProjectX.Services;
 
 namespace ProjectX
 {
@@ -7,6 +8,7 @@ namespace ProjectX
     {
         public override void Load()
         {
+            Bind<ServiceFactory, IServiceFactory>().To<ServiceFactory>().InRequestScope();
         }
     }
 }

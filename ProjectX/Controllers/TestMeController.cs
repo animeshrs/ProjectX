@@ -3,6 +3,8 @@ using System.Data.Entity;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using ProjectX.Services;
+using ProjectX.Services.Services;
 
 namespace ProjectX.Controllers
 {
@@ -10,13 +12,18 @@ namespace ProjectX.Controllers
     {
         private ShardDbContext db = new ShardDbContext();
 
-        public TestMeController()
+        private readonly CategoryService _categoryService;
+
+        public TestMeController(ServiceFactory serviceFactory)
         {
+            _categoryService = serviceFactory.GetCategoryService();
         }
 
         // GET: TestMe
         public async Task<ActionResult> Index()
         {
+            var sum = _categoryService.Sum(1, 2);
+
             var result = await db.TestMes.ToListAsync();
             return View(result);
         }
