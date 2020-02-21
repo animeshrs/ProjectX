@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="9b34ae2375e64b93857feb81d5ce4c0e" Name="Diagram1">
         <EntityTypeShape EntityType="ShardDbModel.Category" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ShardDbModel.CategoryGroup" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

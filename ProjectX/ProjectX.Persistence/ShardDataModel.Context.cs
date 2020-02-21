@@ -26,5 +26,6 @@ namespace ProjectX.Persistence
         }
     
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<CategoryGroup> CategoryGroups { get; set; }
     }
 }

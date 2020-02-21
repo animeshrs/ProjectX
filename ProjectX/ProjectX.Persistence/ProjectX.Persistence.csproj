@@ -137,6 +137,9 @@
     <Compile Include="Category.cs">
       <DependentUpon>ShardDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CategoryGroup.cs">
+      <DependentUpon>ShardDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="MasterDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

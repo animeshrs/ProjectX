@@ -12,8 +12,17 @@
           <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="CategoryGroups">
+          <Key>
+            <PropertyRef Name="CategoryGroupId" />
+          </Key>
+          <Property Name="CategoryGroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryGroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="ShardDbModelStoreContainer">
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryGroups" EntityType="Self.CategoryGroups" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -21,6 +30,7 @@
       <Schema Namespace="ShardDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ShardDbContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="ShardDbModel.Category" />
+          <EntitySet Name="CategoryGroups" EntityType="ShardDbModel.CategoryGroup" />
         </EntityContainer>
         <EntityType Name="Category">
           <Key>
@@ -28,6 +38,14 @@
           </Key>
           <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CategoryGroup">
+          <Key>
+            <PropertyRef Name="CategoryGroupId" />
+          </Key>
+          <Property Name="CategoryGroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryGroupName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -40,6 +58,15 @@
               <MappingFragment StoreEntitySet="Categories">
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryGroups">
+            <EntityTypeMapping TypeName="ShardDbModel.CategoryGroup">
+              <MappingFragment StoreEntitySet="CategoryGroups">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryGroupName" ColumnName="CategoryGroupName" />
+                <ScalarProperty Name="CategoryGroupId" ColumnName="CategoryGroupId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
