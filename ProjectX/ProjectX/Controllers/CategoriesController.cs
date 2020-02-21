@@ -33,6 +33,7 @@ namespace ProjectX.Controllers
 
             //var test = AutoMapperHelper.MapEntities(typeof(Category), typeof(CategoryViewModel));
             //var testVms = mapper.Map<List<CategoryViewModel>>(categories).ToList();
+            var test = categories.Select(Mapper.Map<CategoryViewModel>).ToList();
 
             return View(categoryViewModels);
         }

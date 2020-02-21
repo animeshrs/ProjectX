@@ -4,20 +4,18 @@ namespace ProjectX
 {
     public class AutoMapperWebConfiguration
     {
-
+        [System.Obsolete]
         public static void Configure()
         {
             var assemblyNames = new[]
             {
                 "ProjectX"
             };
-            var config = new MapperConfiguration(cfg =>
+            
+            Mapper.Initialize(cfg =>
             {
-                cfg.AddMaps(assemblyNames);
+                cfg.AddProfiles(assemblyNames);
             });
-
-            config.CompileMappings();
-
         }
     }
 }
