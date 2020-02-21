@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using ProjectX.Helpers
+@{
+    ViewBag.DoNotUseRequire = ViewBag.DoNotUseRequire ?? false;
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -36,6 +40,19 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
+
+    @if (!ViewBag.DoNotUseRequire)
+    {
+        <script src="@(Url.Content(CacheBuster.Tag("~/Scripts/require.js")))"></script>
+        <script src="@(Url.Content(CacheBuster.Tag("~/Scripts/app/requireConfig.js")))"></script>
+        @*<script src="~/Scripts/require.js"></script>
+            <script src="~/Scripts/app/requireConfig.js"></script>*@
+        <script type="text/javascript">
+            //We include jquery here so that they are available throughout the app
+            require(['jquery'], function () {
+            });
+        </script>
+    }
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

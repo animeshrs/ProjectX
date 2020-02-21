@@ -1,4 +1,4 @@
-﻿using System.Web;
+﻿using ProjectX.Filters;
 using System.Web.Mvc;
 
 namespace ProjectX
@@ -8,6 +8,7 @@ namespace ProjectX
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new AddCacheBustingTag());
         }
     }
 }

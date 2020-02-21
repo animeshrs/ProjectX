@@ -267,9 +267,11 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Filters\AddCacheBustingTag.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CacheBuster.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -287,6 +289,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\app\Mediators\channels.js" />
+    <Content Include="Scripts\app\Mediators\mediator.js" />
+    <Content Include="Scripts\app\Views\Categories\index.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -321,6 +326,8 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\r.js" />
+    <Content Include="Scripts\require.js" />
     <Content Include="Scripts\src\index.js" />
     <Content Include="Scripts\src\methods\defaults.js" />
     <Content Include="Scripts\src\methods\destroy.js" />
@@ -339,6 +346,7 @@
     <Content Include="Scripts\src\modifiers\offset.js" />
     <Content Include="Scripts\src\modifiers\preventOverflow.js" />
     <Content Include="Scripts\src\modifiers\shift.js" />
+    <Content Include="Scripts\app\requireConfig.js" />
     <Content Include="Scripts\src\utils\clockwise.js" />
     <Content Include="Scripts\src\utils\computeAutoPlacement.js" />
     <Content Include="Scripts\src\utils\debounce.js" />
@@ -440,7 +448,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Helpers\" />
+    <Folder Include="Scripts\app\Modules\Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
