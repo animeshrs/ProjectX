@@ -6,6 +6,7 @@ using ProjectX;
 using ProjectX.Configuration;
 using System;
 using System.Web;
+using AutoMapper;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
@@ -45,6 +46,17 @@ namespace ProjectX
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+
+                kernel.Bind<IMapper>()
+                    .ToMethod(context =>
+                    {
+                        var config = new MapperConfiguration(cfg =>
+                        {
+                            cfg.AddProfile<AutoMapppingProfile>();
+                            cfg.ConstructServicesUsing(t => kernel.Get(t));
+                        });
+                        return config.CreateMapper();
+                    }).InSingletonScope();
 
                 RegisterServices(kernel);
                 return kernel;

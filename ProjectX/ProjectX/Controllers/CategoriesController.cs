@@ -8,32 +8,25 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using ProjectX.Helpers;
 
 namespace ProjectX.Controllers
 {
     public class CategoriesController : Controller
     {
         private readonly ShardDbContext _context;
+        private readonly IMapper _iMapper;
 
-        public CategoriesController(ServiceFactory serviceFactory)
+        public CategoriesController(ServiceFactory serviceFactory, IMapper iMapper)
         {
             _context = serviceFactory.Context;
+            _iMapper = iMapper;
         }
 
         // GET: Categories
         public async Task<ActionResult> Index()
         {
             var categories = await _context.Categories.ToListAsync();
-
-            var mapperConfiguration = new MapperConfiguration(cfg => { cfg.CreateMap<Category, CategoryViewModel>(); });
-            var mapper = mapperConfiguration.CreateMapper();
-
-            var categoryViewModels = mapper.Map<List<CategoryViewModel>>(categories).ToList();
-
-            //var test = AutoMapperHelper.MapEntities(typeof(Category), typeof(CategoryViewModel));
-            //var testVms = mapper.Map<List<CategoryViewModel>>(categories).ToList();
-            var test = categories.Select(Mapper.Map<CategoryViewModel>).ToList();
+            var categoryViewModels = _iMapper.Map<List<CategoryViewModel>>(categories).ToList();
 
             return View(categoryViewModels);
         }
