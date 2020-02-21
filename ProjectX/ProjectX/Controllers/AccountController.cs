@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ProjectX.Models;
@@ -6,6 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ProjectX.Persistence;
+using ProjectX.Services;
 
 namespace ProjectX.Controllers
 {
@@ -15,8 +18,11 @@ namespace ProjectX.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController()
+        private readonly MasterDbContext _masterContext;
+
+        public AccountController(ServiceFactory serviceFactory)
         {
+            _masterContext = serviceFactory.MasterContext;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -152,6 +158,15 @@ namespace ProjectX.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var userId = new Guid(user.Id);
+                    var masterUser = new User
+                    {
+                        UserId = userId,
+                        UserName = user.UserName
+                    };
+                    _masterContext.Users.Add(masterUser);
+                    await _masterContext.SaveChangesAsync();
+
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

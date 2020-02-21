@@ -21,7 +21,7 @@ namespace ProjectX.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("MasterDbContext", throwIfV1Schema: false)
+            : base("MasterDataContext", throwIfV1Schema: false)
         {
         }
 

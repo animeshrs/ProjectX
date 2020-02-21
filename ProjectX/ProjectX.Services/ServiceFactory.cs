@@ -11,6 +11,7 @@ namespace ProjectX.Services
     {
         private readonly ServiceContainer _serviceContainer;
         private ShardDbContext _shardDbContext;
+        private MasterDbContext _masterDbContext;
 
         public ServiceFactory(ServiceContainer serviceContainer)
         {
@@ -18,6 +19,7 @@ namespace ProjectX.Services
         }
 
         public ShardDbContext Context => _shardDbContext ?? (_shardDbContext = new ShardDbContext());
+        public MasterDbContext MasterContext => _masterDbContext ?? (_masterDbContext = new MasterDbContext());
 
         public CategoryService GetCategoryService()
         {
@@ -25,7 +27,7 @@ namespace ProjectX.Services
             if (service != null)
                 return service;
 
-            service = new CategoryService();
+            service = new CategoryService(this);
 
             _serviceContainer.AddService(typeof(CategoryService), service);
             return service;

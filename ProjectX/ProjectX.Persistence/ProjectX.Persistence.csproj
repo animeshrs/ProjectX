@@ -131,8 +131,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>MasterDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Category.cs">
       <DependentUpon>ShardDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MasterDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MasterDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MasterDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MasterDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MasterDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MasterDataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShardDataModel.Context.cs">
@@ -150,6 +168,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ShardDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>MasterDataModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="ShardDataModel.edmx">
@@ -159,6 +180,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <EntityDeploy Include="MasterDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MasterDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="MasterDataModel.edmx.diagram">
+      <DependentUpon>MasterDataModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Scripts\jquery-3.4.1.min.map" />
     <None Include="Scripts\jquery-3.4.1.slim.min.map" />
@@ -167,6 +195,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MasterDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MasterDataModel.edmx</DependentUpon>
+      <LastGenOutput>MasterDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MasterDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MasterDataModel.edmx</DependentUpon>
+      <LastGenOutput>MasterDataModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
