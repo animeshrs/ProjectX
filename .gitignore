@@ -338,3 +338,4 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/ProjectX/App_Start/AutoMapperWebConfiguration.cs

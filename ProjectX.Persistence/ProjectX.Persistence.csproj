@@ -150,9 +150,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ShardDataModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="TestMe.cs">
-      <DependentUpon>ShardDataModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="ShardDataModel.edmx">
