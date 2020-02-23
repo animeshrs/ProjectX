@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectX.Services", "Projec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectX.Configuration", "ProjectX.Configuration\ProjectX.Configuration.csproj", "{E08C9FED-9E41-4C04-862D-BBC325A46CE7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectX.Cache", "ProjectX.Cache\ProjectX.Cache.csproj", "{4B7A1A5A-FD51-4716-999F-4A16BE75BDCD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{E08C9FED-9E41-4C04-862D-BBC325A46CE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E08C9FED-9E41-4C04-862D-BBC325A46CE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E08C9FED-9E41-4C04-862D-BBC325A46CE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B7A1A5A-FD51-4716-999F-4A16BE75BDCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B7A1A5A-FD51-4716-999F-4A16BE75BDCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B7A1A5A-FD51-4716-999F-4A16BE75BDCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B7A1A5A-FD51-4716-999F-4A16BE75BDCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

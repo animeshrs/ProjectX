@@ -15,5 +15,11 @@ namespace ProjectX.Configuration
             var connectionString = ConfigurationManager.AppSettings["ShardDbTemplate"];
             return connectionString;
         }
+
+        public string GetRedisConnectionString()
+        {
+            var connectionString = ConfigurationManager.ConnectionStrings["RedisCache"].ConnectionString;
+            return connectionString;
+        }
     }
 }

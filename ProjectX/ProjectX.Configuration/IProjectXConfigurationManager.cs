@@ -4,5 +4,6 @@
     {
         string GetMasterDbConnectionString();
         string GetShardDbConnectionString();
+        string GetRedisConnectionString();
     }
 }

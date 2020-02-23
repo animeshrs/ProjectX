@@ -1,12 +1,14 @@
+using AutoMapper;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
 using Ninject.Web.Common.WebHost;
 using ProjectX;
+using ProjectX.Cache;
 using ProjectX.Configuration;
 using System;
 using System.Web;
-using AutoMapper;
+using ProjectX.Helpers;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
@@ -76,6 +78,8 @@ namespace ProjectX
         {
             kernel.Load<WebModule>();
             kernel.Load<ProjectXConfigurationModule>();
+            kernel.Load<ProjectXCacheModule>();
+            kernel.Load<CacheProviderModule>();
         }
     }
 }

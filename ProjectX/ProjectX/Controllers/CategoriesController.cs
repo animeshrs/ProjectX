@@ -8,6 +8,9 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using ProjectX.Caching;
+using ProjectX.Caching.Contracts;
+using ProjectX.Enums.Cache;
 
 namespace ProjectX.Controllers
 {
@@ -15,11 +18,13 @@ namespace ProjectX.Controllers
     {
         private readonly ShardDbContext _context;
         private readonly IMapper _iMapper;
+        private readonly IRedisCacheProvider _iCacheProvider;
 
-        public CategoriesController(ServiceFactory serviceFactory, IMapper iMapper)
+        public CategoriesController(ServiceFactory serviceFactory, IMapper iMapper, IRedisCacheProvider iCacheProvider)
         {
             _context = serviceFactory.Context;
             _iMapper = iMapper;
+            _iCacheProvider = iCacheProvider;
         }
 
         // GET: Categories
@@ -27,6 +32,12 @@ namespace ProjectX.Controllers
         {
             var categories = await _context.Categories.ToListAsync();
             var categoryViewModels = _iMapper.Map<List<CategoryViewModel>>(categories).ToList();
+
+            var numDaysInWeek = _iCacheProvider.Get<int>(CacheKeys.NumDaysInWeek);
+            if (numDaysInWeek <= 0)
+            {
+                _iCacheProvider.Set(CacheKeys.NumDaysInWeek, 7, EnumCaching.ShortTimeOut);
+            }
 
             return View(categoryViewModels);
         }
@@ -38,11 +49,20 @@ namespace ProjectX.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = await _context.Categories.FindAsync(id);
+            var category = await _context.Categories.FindAsync(id);
+
             if (category == null)
             {
                 return HttpNotFound();
             }
+
+            var categoryVmFromCache = _iCacheProvider.Get<CategoryViewModel>(CacheKeys.CategoryName(id.Value));
+            if (categoryVmFromCache != null) 
+                return View(category);
+
+            var categoryViewModel = _iMapper.Map<CategoryViewModel>(category);
+            _iCacheProvider.Set(CacheKeys.CategoryName(id.Value), categoryViewModel, EnumCaching.ShortTimeOut);
+
             return View(category);
         }
 
