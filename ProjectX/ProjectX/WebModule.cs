@@ -8,7 +8,7 @@ namespace ProjectX
     {
         public override void Load()
         {
-            Bind<ServiceFactory, IServiceFactory>().To<ServiceFactory>().InRequestScope();
+           
         }
     }
 }

@@ -9,6 +9,7 @@ using ProjectX.Configuration;
 using System;
 using System.Web;
 using ProjectX.Helpers;
+using ProjectX.Services;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
@@ -80,6 +81,7 @@ namespace ProjectX
             kernel.Load<ProjectXConfigurationModule>();
             kernel.Load<ProjectXCacheModule>();
             kernel.Load<CacheProviderModule>();
+            kernel.Load<ServiceModule>();
         }
     }
 }

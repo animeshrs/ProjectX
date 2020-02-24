@@ -1,4 +1,7 @@
 ﻿using ProjectX.Persistence;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace ProjectX.Services.ShardServices
 {
@@ -10,9 +13,10 @@ namespace ProjectX.Services.ShardServices
             _context = serviceFactory.Context;
         }
 
-        public int Sum(int num1, int num2)
+        public async Task<List<Category>> GetAllCategories()
         {
-            return num1 + num2;
+            var categories = await _context.Categories.ToListAsync();
+            return categories;
         }
     }
 }

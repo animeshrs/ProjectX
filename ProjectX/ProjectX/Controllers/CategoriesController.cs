@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using ProjectX.Caching;
 using ProjectX.Caching.Contracts;
 using ProjectX.Enums.Cache;
+using ProjectX.Services.ShardServices;
 
 namespace ProjectX.Controllers
 {
@@ -19,18 +20,20 @@ namespace ProjectX.Controllers
         private readonly ShardDbContext _context;
         private readonly IMapper _iMapper;
         private readonly IRedisCacheProvider _iCacheProvider;
+        private readonly CategoryService _categoryService;
 
         public CategoriesController(ServiceFactory serviceFactory, IMapper iMapper, IRedisCacheProvider iCacheProvider)
         {
             _context = serviceFactory.Context;
             _iMapper = iMapper;
             _iCacheProvider = iCacheProvider;
+            _categoryService = serviceFactory.GetCategoryService();
         }
 
         // GET: Categories
         public async Task<ActionResult> Index()
         {
-            var categories = await _context.Categories.ToListAsync();
+            var categories = await _categoryService.GetAllCategories();
             var categoryViewModels = _iMapper.Map<List<CategoryViewModel>>(categories).ToList();
 
             var numDaysInWeek = _iCacheProvider.Get<int>(CacheKeys.NumDaysInWeek);
