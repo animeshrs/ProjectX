@@ -118,6 +118,7 @@ namespace ProjectX.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "CategoryId,CategoryName")] Category category)
         {
+            // Checking model state
             if (ModelState.IsValid)
             {
                 _context.Entry(category).State = EntityState.Modified;
