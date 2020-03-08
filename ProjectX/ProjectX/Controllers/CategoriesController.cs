@@ -85,6 +85,7 @@ namespace ProjectX.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "CategoryId,CategoryName")] Category category)
         {
+            // check validation
             if (ModelState.IsValid)
             {
                 _context.Categories.Add(category);
