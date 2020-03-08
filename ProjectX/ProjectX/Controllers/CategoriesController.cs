@@ -65,6 +65,7 @@ namespace ProjectX.Controllers
             if (categoryVmFromCache != null) 
                 return View(category);
 
+            // map
             var categoryViewModel = _iMapper.Map<CategoryViewModel>(category);
             _iCacheProvider.Set(CacheKeys.CategoryName(id.Value), categoryViewModel, EnumCaching.ShortTimeOut);
 
