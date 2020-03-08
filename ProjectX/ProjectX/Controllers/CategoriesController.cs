@@ -38,6 +38,7 @@ namespace ProjectX.Controllers
 
             // code to test cache
             var numDaysInWeek = _iCacheProvider.Get<int>(CacheKeys.NumDaysInWeek);
+            // Set get
             if (numDaysInWeek <= 0)
             {
                 _iCacheProvider.Set(CacheKeys.NumDaysInWeek, 7, EnumCaching.ShortTimeOut);
