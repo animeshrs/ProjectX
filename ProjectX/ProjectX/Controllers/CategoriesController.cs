@@ -36,6 +36,7 @@ namespace ProjectX.Controllers
             var categories = await _categoryService.GetAllCategories();
             var categoryViewModels = _iMapper.Map<List<CategoryViewModel>>(categories).ToList();
 
+            // code to test cache
             var numDaysInWeek = _iCacheProvider.Get<int>(CacheKeys.NumDaysInWeek);
             if (numDaysInWeek <= 0)
             {
