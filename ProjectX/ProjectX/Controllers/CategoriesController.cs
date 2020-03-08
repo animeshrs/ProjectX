@@ -60,6 +60,7 @@ namespace ProjectX.Controllers
                 return HttpNotFound();
             }
 
+            // cache
             var categoryVmFromCache = _iCacheProvider.Get<CategoryViewModel>(CacheKeys.CategoryName(id.Value));
             if (categoryVmFromCache != null) 
                 return View(category);
