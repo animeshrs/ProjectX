@@ -32,5 +32,17 @@ namespace ProjectX.Services
             _serviceContainer.AddService(typeof(CategoryService), service);
             return service;
         }
+
+        public CategoryGroupService GetCategoryGroupService()
+        {
+            var service = (CategoryGroupService)_serviceContainer.GetService(typeof(CategoryGroupService));
+            if (service != null)
+                return service;
+
+            service = new CategoryGroupService(this);
+            _serviceContainer.AddService(typeof(CategoryService), service);
+
+            return service;
+        }
     }
 }

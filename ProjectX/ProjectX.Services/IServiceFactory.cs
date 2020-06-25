@@ -5,5 +5,6 @@ namespace ProjectX.Services
     public interface IServiceFactory
     {
         CategoryService GetCategoryService();
+        CategoryGroupService GetCategoryGroupService();
     }
 }

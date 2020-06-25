@@ -1,4 +1,4 @@
-﻿using ProjectX.Persistence;
+﻿using ProjectX.Services.DataTransferObjectViewModels.Categories;
 
 namespace ProjectX.Models.ViewModels.Categories
 {
@@ -11,7 +11,7 @@ namespace ProjectX.Models.ViewModels.Categories
         {
             public AutoMappings()
             {
-                CreateMap<Category, CategoryViewModel>();
+                CreateMap<CategoryDtoViewModel, CategoryViewModel>();
             }
         }
     }

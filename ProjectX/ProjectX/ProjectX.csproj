@@ -326,7 +326,9 @@
     <Compile Include="Caching\Contracts\IRedisCacheProvider.cs" />
     <Compile Include="Caching\RedisCacheProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\APIControllers\CategoryGroupsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\CategoryGroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Enums\Cache\EnumCache.cs" />
@@ -336,11 +338,18 @@
     </Compile>
     <Compile Include="Helpers\CacheBuster.cs" />
     <Compile Include="Helpers\CacheProviderModule.cs" />
+    <Compile Include="Helpers\IPHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\Categories\CategoryViewModel.cs" />
+    <Compile Include="Models\ViewModels\CategoryGroups\CategoryGroupViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\CategoryGroup\Common.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Common.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="WebModule.cs" />
   </ItemGroup>
@@ -356,6 +365,7 @@
     <Content Include="Scripts\app\Mediators\channels.js" />
     <Content Include="Scripts\app\Mediators\mediator.js" />
     <Content Include="Scripts\app\Views\Categories\index.js" />
+    <Content Include="Scripts\app\Views\CategoryGroups\index.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -509,6 +519,8 @@
     <Content Include="Views\Categories\Details.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\CategoryGroups\Index.cshtml" />
+    <Content Include="Views\Shared\_spinner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -542,6 +554,12 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\CategoryGroup\Common.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Common.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

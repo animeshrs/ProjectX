@@ -1,0 +1,14 @@
+﻿@using Resource = ProjectX.Resources.CategoryGroup.Common
+@{
+    ViewBag.Title = Resource.CategoryGroups;
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        require(['views/CategoryGroups/index'], function (page) {
+            page.initialize();
+        });
+    </script>
+}
+

@@ -17,5 +17,7 @@ namespace ProjectX.Persistence
         public int CategoryGroupId { get; set; }
         public string CategoryGroupName { get; set; }
         public int CategoryId { get; set; }
+    
+        public virtual Category Category { get; set; }
     }
 }

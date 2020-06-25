@@ -144,5 +144,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Scripts\00.00.01\001%29 New table - Categories.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\00.00.01\003%29 Foreign key relationship between Categories and CategoryGroups table.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -121,10 +121,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTransferObjectViewModels\Categories\CategoryDtoViewModel.cs" />
+    <Compile Include="DataTransferObjectViewModels\CategoryGroups\CategoryGroupDtoViewModel.cs" />
     <Compile Include="IServiceFactory.cs" />
     <Compile Include="ServiceFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceModule.cs" />
+    <Compile Include="ShardServices\CategoryGroupService.cs" />
     <Compile Include="ShardServices\CategoryService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +140,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

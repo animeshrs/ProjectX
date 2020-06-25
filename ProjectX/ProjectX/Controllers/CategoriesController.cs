@@ -11,7 +11,9 @@ using System.Web.Mvc;
 using ProjectX.Caching;
 using ProjectX.Caching.Contracts;
 using ProjectX.Enums.Cache;
+using ProjectX.Helpers;
 using ProjectX.Services.ShardServices;
+using ProjectX.Services.DataTransferObjectViewModels.Categories;
 
 namespace ProjectX.Controllers
 {
@@ -33,8 +35,9 @@ namespace ProjectX.Controllers
         // GET: Categories
         public async Task<ActionResult> Index()
         {
-            var categories = await _categoryService.GetAllCategories();
-            var categoryViewModels = _iMapper.Map<List<CategoryViewModel>>(categories).ToList();
+            var currentIp = IPHelper.GetLoggedInUserIp();
+            var categoryDtos = await _categoryService.GetAllCategories();
+            var categoryViewModels = _iMapper.Map<List<CategoryViewModel>>(categoryDtos).ToList();
 
             // code to test cache
             var numDaysInWeek = _iCacheProvider.Get<int>(CacheKeys.NumDaysInWeek);
@@ -61,13 +64,19 @@ namespace ProjectX.Controllers
                 return HttpNotFound();
             }
 
+            var categoryDto = new CategoryDtoViewModel
+            {
+                CategoryId = category.CategoryId,
+                CategoryName = category.CategoryName
+            };
+
             // cache
             var categoryVmFromCache = _iCacheProvider.Get<CategoryViewModel>(CacheKeys.CategoryName(id.Value));
-            if (categoryVmFromCache != null) 
+            if (categoryVmFromCache != null)
                 return View(category);
 
             // map
-            var categoryViewModel = _iMapper.Map<CategoryViewModel>(category);
+            var categoryViewModel = _iMapper.Map<CategoryViewModel>(categoryDto);
             _iCacheProvider.Set(CacheKeys.CategoryName(id.Value), categoryViewModel, EnumCaching.ShortTimeOut);
 
             return View(category);

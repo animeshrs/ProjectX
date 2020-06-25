@@ -20,9 +20,25 @@
           <Property Name="CategoryGroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_CategoryGroups_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="CategoryGroups" Type="Self.CategoryGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="CategoryGroups">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ShardDbModelStoreContainer">
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CategoryGroups" EntityType="Self.CategoryGroups" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CategoryGroups_Categories" Association="Self.FK_CategoryGroups_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="CategoryGroups" EntitySet="CategoryGroups" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -31,6 +47,10 @@
         <EntityContainer Name="ShardDbContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="ShardDbModel.Category" />
           <EntitySet Name="CategoryGroups" EntityType="ShardDbModel.CategoryGroup" />
+          <AssociationSet Name="FK_CategoryGroups_Categories" Association="ShardDbModel.FK_CategoryGroups_Categories">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="CategoryGroup" EntitySet="CategoryGroups" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Category">
           <Key>
@@ -38,6 +58,7 @@
           </Key>
           <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CategoryGroups" Relationship="ShardDbModel.FK_CategoryGroups_Categories" FromRole="Category" ToRole="CategoryGroup" />
         </EntityType>
         <EntityType Name="CategoryGroup">
           <Key>
@@ -46,7 +67,20 @@
           <Property Name="CategoryGroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryGroupName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="ShardDbModel.FK_CategoryGroups_Categories" FromRole="CategoryGroup" ToRole="Category" />
         </EntityType>
+        <Association Name="FK_CategoryGroups_Categories">
+          <End Type="ShardDbModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="ShardDbModel.CategoryGroup" Role="CategoryGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="CategoryGroup">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

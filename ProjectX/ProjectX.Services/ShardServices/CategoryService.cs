@@ -1,7 +1,9 @@
 ﻿using ProjectX.Persistence;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
+using ProjectX.Services.DataTransferObjectViewModels.Categories;
 
 namespace ProjectX.Services.ShardServices
 {
@@ -13,10 +15,16 @@ namespace ProjectX.Services.ShardServices
             _context = serviceFactory.Context;
         }
 
-        public async Task<List<Category>> GetAllCategories()
+        public async Task<List<CategoryDtoViewModel>> GetAllCategories()
         {
             var categories = await _context.Categories.ToListAsync();
-            return categories;
+            var categoryDtos = categories.Select(c => new CategoryDtoViewModel
+            {
+                CategoryName = c.CategoryName,
+                CategoryId = c.CategoryId
+            }).ToList();
+
+            return categoryDtos;
         }
     }
 }

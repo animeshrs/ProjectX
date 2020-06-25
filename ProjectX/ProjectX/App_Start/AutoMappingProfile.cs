@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using ProjectX.Models.ViewModels.Categories;
-using ProjectX.Persistence;
+using ProjectX.Models.ViewModels.CategoryGroups;
+using ProjectX.Services.DataTransferObjectViewModels.Categories;
+using ProjectX.Services.DataTransferObjectViewModels.CategoryGroups;
 
 namespace ProjectX
 {
@@ -8,7 +10,9 @@ namespace ProjectX
     {
         public AutoMapppingProfile()
         {
-            CreateMap<Category, CategoryViewModel>();
+            CreateMap<CategoryDtoViewModel, CategoryViewModel>();
+            CreateMap<CategoryGroupDtoViewModel, CategoryGroupViewModel>();
+
         }
     }
 }
