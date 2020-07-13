@@ -10,13 +10,15 @@
 namespace ProjectX.Persistence
 {
     using System;
+    using System.Configuration;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
     public partial class MasterDbContext : DbContext
     {
+        
         public MasterDbContext()
-            : base("name=MasterDbContext")
+            : base("MasterDbContext")
         {
         }
     

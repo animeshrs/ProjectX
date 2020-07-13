@@ -1,6 +1,6 @@
 ﻿using DbUp;
+using Microsoft.Azure;
 using System;
-using System.Configuration;
 using System.Linq;
 using System.Reflection;
 
@@ -12,7 +12,7 @@ namespace ProjectX.Master
         {
             var connectionString =
                 args.FirstOrDefault()
-                ?? ConfigurationManager.AppSettings["MasterDbTemplate"];
+                ?? CloudConfigurationManager.GetSetting("MasterDbTemplate");
 
             EnsureDatabase.For.SqlDatabase(connectionString);
 

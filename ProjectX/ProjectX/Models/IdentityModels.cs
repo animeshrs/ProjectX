@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Azure;
 
 namespace ProjectX.Models
 {
@@ -20,8 +21,9 @@ namespace ProjectX.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        static string cs = CloudConfigurationManager.GetSetting("MasterDbTemplate");
         public ApplicationDbContext()
-            : base("MasterDataContext", throwIfV1Schema: false)
+            : base(nameOrConnectionString: cs, throwIfV1Schema: false)
         {
         }
 
