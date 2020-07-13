@@ -796,6 +796,8 @@
     <Content Include="Content\Source\zoom-master\LICENSE.md" />
     <Content Include="Content\Source\zoom-master\package.json" />
     <Content Include="Content\Source\zoom-master\readme.md" />
+    <None Include="Properties\PublishProfiles\MyProjectX - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\MyProjectX - ReadOnly - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\myprojectx - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
