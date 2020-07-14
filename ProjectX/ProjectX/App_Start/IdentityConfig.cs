@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -18,8 +21,27 @@ namespace ProjectX
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            var port = int.Parse(ConfigurationManager.AppSettings["port"]);
+            var host = ConfigurationManager.AppSettings["smtpServer"];
+            var enableSsl = bool.Parse(ConfigurationManager.AppSettings["enableSsl"]);
+            var useDefaultCredentials = bool.Parse(ConfigurationManager.AppSettings["useDefaultCredentials"]);
+            var userName = ConfigurationManager.AppSettings["emailUserName"];
+            var password = ConfigurationManager.AppSettings["emailPassword"];
+            var emailFrom = ConfigurationManager.AppSettings["emailFrom"];
+
+            var mailMessage = new MailMessage(new MailAddress(userName, emailFrom), new MailAddress(message.Destination));
+            var smtpClient = new SmtpClient();
+            smtpClient.Port = port;
+            smtpClient.Host = host;
+            smtpClient.EnableSsl = enableSsl;
+            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtpClient.UseDefaultCredentials = useDefaultCredentials;
+            smtpClient.Credentials = new NetworkCredential(userName, password);
+
+            mailMessage.Subject = message.Subject;
+            mailMessage.Body = message.Body;
+
+            return smtpClient.SendMailAsync(mailMessage);
         }
     }
 
@@ -40,7 +62,7 @@ namespace ProjectX
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
             // Configure validation logic for usernames
@@ -81,7 +103,7 @@ namespace ProjectX
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
+                manager.UserTokenProvider =
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;

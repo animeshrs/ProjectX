@@ -953,7 +953,7 @@
       <Name>ProjectX.Persistence</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProjectX.Services\ProjectX.Services.csproj">
-      <Project>{0cb6e21b-ceaf-4158-aa28-9707b04d9698}</Project>
+      <Project>{0CB6E21B-CEAF-4158-AA28-9707B04D9698}</Project>
       <Name>ProjectX.Services</Name>
     </ProjectReference>
   </ItemGroup>
