@@ -78,7 +78,7 @@ namespace ProjectX.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -386,6 +386,15 @@ namespace ProjectX.Controllers
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
+                        var userId = new Guid(user.Id);
+                        var masterUser = new User
+                        {
+                            UserId = userId,
+                            UserName = user.UserName
+                        };
+                        _masterContext.Users.Add(masterUser);
+                        await _masterContext.SaveChangesAsync();
+
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToLocal(returnUrl);
                     }

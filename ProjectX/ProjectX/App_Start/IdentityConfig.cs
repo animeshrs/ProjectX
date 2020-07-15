@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using Nexmo.Api;
 using ProjectX.Models;
 
 namespace ProjectX
@@ -49,7 +50,24 @@ namespace ProjectX
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your SMS service here to send a text message.
+            var apiKey = ConfigurationManager.AppSettings["smsApiKey"];
+            var apiSecret = ConfigurationManager.AppSettings["smsApiSecret"];
+            var smsFrom = ConfigurationManager.AppSettings["smsFrom"];
+
+            var client = new Client(creds: new Nexmo.Api.Request.Credentials
+            {
+                ApiKey = apiKey,
+                ApiSecret = apiSecret
+            });
+
+            client.SMS.Send(request: new SMS.SMSRequest
+            {
+                from = smsFrom,
+                to = message.Destination,
+                text = message.Body,
+                validity = "1000"
+            });
+
             return Task.FromResult(0);
         }
     }
